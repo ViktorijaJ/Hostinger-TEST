@@ -16,9 +16,8 @@ class TreeStorage extends Model {
         $result->options = array();
 
         if (!Storage::exists(TreeStorage::$fileName)) {
-            Storage::append(Treestorage::$fileName, '0|ROOT|-1');
+            Storage::append(Treestorage::$fileName, '0|Main Category|-1');
         }
-
         $tree = null;
         $handle = Storage::readStream(Treestorage::$fileName);
 
@@ -33,11 +32,11 @@ class TreeStorage extends Model {
                 $node->addChildNode($temp);
                 array_push($result->options, $temp);
             }
-
             if ($tree == null) {
                 $tree = $node;
             }
         }
+
         fclose($handle);
         $result->tree = $tree;
         if (count($result->options) < 1) {
@@ -51,12 +50,9 @@ class TreeStorage extends Model {
         if ($node == null) {
             return null;
         }
-
-
         if (((int) $node->id) == ((int) $id)) {
             return $node;
         }
-
         $result = null;
         foreach ($node->children as $value) {
             $step = TreeStorage::findNodeById($value, $id);

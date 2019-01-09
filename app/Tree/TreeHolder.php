@@ -2,8 +2,9 @@
 
 namespace App\Tree;
 
-class TreeHolder
-{
+class TreeHolder {
+
     public $tree;
     public $options;
+    
 }

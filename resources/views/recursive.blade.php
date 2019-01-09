@@ -7,10 +7,8 @@
 
         <title>Laravel</title>
 
-        <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
 
-        <!-- Styles -->
         <style>
             html, body {
                 background-color: #fff;
@@ -79,27 +77,28 @@
 
                 <form action="{{URL::to('/recursive')}}" method="post">
                     {{ csrf_field()}}
+                    
                     <label>
                         Select parent category: 
                     </label>
                     <select name="parentNode">
-                       
                         @foreach ($treeHolder->options as $option)
                         <option value="{{$option->id}}">{{$option->name}}</option> 
                         @endforeach
                     </select>
-
+                    
                     <label>
                         Enter category name:
-                    </label>
+                    </label>                    
                     <input type="text" placeholder="Category name" name="catName">
-
+                    
                     <button type="submit">Add</button>
-
+                    
                 </form>
+
                 <div>{{$treeHolder->tree->toHtml()}}</div>
+
             </div>
         </div>
-
     </body>
 </html>
