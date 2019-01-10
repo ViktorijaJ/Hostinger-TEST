@@ -5,13 +5,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>TEST</title>
 
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
 
         <style>
             html, body {
-                background-color: #fff;
+                background-color: #ccc;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -23,8 +23,7 @@
                 height: 100vh;
             }
 
-            .flex-center {
-                align-items: center;
+            .flex-center {                
                 display: flex;
                 justify-content: center;
             }
@@ -50,16 +49,75 @@
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
-                font-size: 13px;
+                font-size: 20px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
-                text-transform: uppercase;
+                text-transform: uppercase;             
             }
 
             .m-b-md {
-                margin-bottom: 30px;
+                margin-bottom: 30px;             
             }
+
+            .form {
+                margin: 50px 0px;
+                color: #636b6f;                 
+                font-size: 15px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-transform: uppercase; 
+            }
+            
+            label {
+                margin-right: 10px;
+            }
+
+            #select-menu, #cat-name {
+                background-color: #636b6f;
+                color: #fff;
+                height: 30px;
+                width: 180px;
+                font-family: 'Nunito', sans-serif;
+                font-size: 15px;
+                font-weight: bold;
+                margin-right: 30px;
+            }
+            
+            ::placeholder {
+                color: #999;
+                font-family: 'Nunito', sans-serif;
+                font-size: 15px;
+                font-weight: bold;
+            }
+
+            #select-menu:hover {
+                cursor: pointer;
+                background-color: #000;
+            }
+            
+            button {
+                background-color: #636b6f;
+                color: #fff;
+                height: 30px;
+                width: 100px;
+                font-family: 'Nunito', sans-serif;
+                font-size: 15px;
+                font-weight: bold;
+                text-transform: uppercase;  
+                border-color: #000;
+            }      
+            
+            button:hover {
+                cursor: pointer;
+                background-color: #000;
+                color: #fff;
+            }
+            
+            ul {
+                margin-top: 0px;          
+            }
+                       
         </style>
     </head>
     <body>
@@ -75,25 +133,25 @@
                     <a href="/iterative">Go to iterative</a>               
                 </div>
 
-                <form action="{{URL::to('/recursive')}}" method="post">
+                <form class="form" action="{{URL::to('/recursive')}}" method="post">
                     {{ csrf_field()}}
-                    
+
                     <label>
                         Select parent category: 
                     </label>
-                    <select name="parentNode">
+                    <select id="select-menu" name="parentNode">
                         @foreach ($treeHolder->options as $option)
                         <option value="{{$option->id}}">{{$option->name}}</option> 
                         @endforeach
                     </select>
-                    
+
                     <label>
                         Enter category name:
                     </label>                    
-                    <input type="text" placeholder="Category name" name="catName">
-                    
+                    <input id="cat-name" type="text" placeholder="Enter category name" name="catName">
+
                     <button type="submit">Add</button>
-                    
+
                 </form>
 
                 <div>{{$treeHolder->tree->toHtml()}}</div>

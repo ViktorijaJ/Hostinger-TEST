@@ -18,6 +18,7 @@ class TreeStorage extends Model {
         if (!Storage::exists(TreeStorage::$fileName)) {
             Storage::append(Treestorage::$fileName, '0|Main Category|-1');
         }
+        
         $tree = null;
         $handle = Storage::readStream(Treestorage::$fileName);
 
@@ -38,6 +39,7 @@ class TreeStorage extends Model {
         }
 
         fclose($handle);
+        
         $result->tree = $tree;
         if (count($result->options) < 1) {
             Storage::delete(Treestorage::$fileName);
